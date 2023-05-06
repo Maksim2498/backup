@@ -13,7 +13,9 @@ set to desired amount.
 
 ## Usage
 
+``` console
 backup [options] <path to target> <path to backup folder>
+```
 
 ## Options
 
