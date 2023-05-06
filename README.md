@@ -2,13 +2,13 @@
 
 ## About
 
-This  is  a  bash script that manages backups. It creates a backup of
-target  file  passed to it as the first argument in the backup folder
-passed to it as the secod argument. If backup folder doesn't exist it
-will be created. Backups are stored as .tag.gz archives with name set
-to  it's  creation  date.  By default this script will create up to 5
-backups  removing  old  ones  on  attempt  to  create a new one. This
-behaviour  can  be  overridden  by  passing an -m (or --max) argument
+This  is  a  bash  script  that manages backups. It creates a backup of
+target  file  passed  to  it as the first argument in the backup folder
+passed  to  it as the secod argument. If backup folder doesn't exist it
+will be created. Backups are stored as `.tag.gz` archives with name set
+to  it's  creation  date.  By  default  this script will create up to 5
+backups  removing  old  ones  on  attempt  to  create  a  new one. This
+behaviour  can  be  overridden  by  passing  an  -m (or --max) argument
 set to desired amount.
 
 ## Usage
