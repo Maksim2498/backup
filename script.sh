@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 DEFAULT_MAX=5
 
@@ -35,9 +35,7 @@ while [[ $# -gt 0 ]]; do
 
         -v|--verbose)
             verbose=yes
-
             shift
-
             ;;
 
         -m)
@@ -79,32 +77,49 @@ backup=${pos_args[1]}
 
 # Check if target file exists
 
-if ! [[ -a ${target} ]]; then
+if ! [[ -a "$target" ]]; then
     echo "Target file $target doesn't exits"
     exit 1
 fi
 
-mkdir -p ${backup}
+mkdir -p "$backup"
 
-count=$(ls ${backup} | wc -l)
-diff=$(($count - $max))
+count=$(ls "$backup" | wc -l)
+diff=$(($count + 1 - $max))
 
 # Remove too old backups
 
 if [[ $diff -gt 0 ]]; then
-    to_delete=$(ls -t ${backup} | tail -$diff)
+    if [[ $verbose == yes ]]; then
+        echo "Maximum number of backups reached"
+        echo "Removing $diff oldest backup(s):"
+    fi
+
+    to_delete=$(ls -t $"backup" | tail -$diff)
 
     for file in $to_delete; do
-        rm -rf "$backup/$file"
+        file="$backup/$file"
+
+        echo -n "Removing $file... "
+        rm -rf "$file"
+        echo "Done"
     done
 fi
 
 # Create backup
 
+backup="$backup/$(date +%Y-%m-%d_%H-%M-%S).tar.gz"
+
 if [[ $verbose == yes ]]; then
+    echo
+    echo "Creating backup $backup..."
     flags=-cavf
 else
     flags=-caf
 fi
 
-tar $flags "$backup/$(date +%Y-%m-%d_%H-%M-%S).tar.gz" "$target"
+tar $flags "$backup" "$target"
+
+if [[ $verbose == yes ]]; then
+    echo "Backup creation is finished"
+fi
