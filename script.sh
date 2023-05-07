@@ -20,13 +20,13 @@ while [[ $# -gt 0 ]]; do
             echo "                  Default value is $DEFAULT_MAX"
             echo
             echo "About:"
-            echo "  This  bash  script  manages  backups. It creates a backup of target"
-            echo "  file passed to it as the first argument in the backup folder passed"
-            echo "  to it as the secod argument. If backup folder doesn't exist it will"
-            echo "  be created. Backups are stored as .tag.gz archives with name set to"
-            echo "  it's  creation  date.  By  default  this script will create up to 5"
-            echo "  backups  removing  old  ones  on  attempt to create a new one. This"
-            echo "  behaviour  can  be  overridden by passing an -m (or --max) argument"
+            echo "  This  bash  script  manages  backups. It  creates a backup of target"
+            echo "  file  passed to it as the first argument in the backup folder passed"
+            echo "  to it as the second argument. If backup folder doesn't exist it will"
+            echo "  be  created. Backups are stored as .tag.gz archives with name set to"
+            echo "  it's  creation  date.  By  default  this  script will create up to 5"
+            echo "  backups  removing  old  ones  on  attempt  to create a new one. This"
+            echo "  behaviour  can  be  overridden  by passing an -m (or --max) argument"
             echo "  set to desired amount."
 
             exit
