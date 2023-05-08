@@ -95,7 +95,7 @@ if [[ $diff -gt 0 ]]; then
         echo "Removing $diff oldest backup(s):"
     fi
 
-    to_delete=$(ls -t $"backup" | tail -$diff)
+    to_delete=$(ls -t "$backup" | tail -$diff)
 
     for file in $to_delete; do
         file="$backup/$file"
@@ -111,7 +111,6 @@ fi
 backup="$backup/$(date +%Y-%m-%d_%H-%M-%S).tar.gz"
 
 if [[ $verbose == yes ]]; then
-    echo
     echo "Creating backup $backup..."
     flags=-cavf
 else
@@ -120,6 +119,14 @@ fi
 
 tar $flags "$backup" "$target"
 
+exit_code=$?
+
 if [[ $verbose == yes ]]; then
-    echo "Backup creation is finished"
+    if [[ $exit_code -eq 0 ]]; then
+        echo "Backup creation is succeeded"
+    else
+        echo "Backup creation is failed"
+    fi
 fi
+
+exit $exit_code
